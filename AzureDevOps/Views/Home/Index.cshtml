@@ -1,8 +1,35 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "Home Page";
+
+    // Get the current environment
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+    // Determine what to display based on the environment
+    string message;
+    switch (environment?.ToLower())
+    {
+        case "development":
+            message = "This is the Development Environment.";
+            break;
+        case "staging":
+            message = "This is the Staging Environment.";
+            break;
+        case "production":
+            message = "This is the Production Environment.";
+            break;
+        default:
+            message = "Environment not recognized.";
+            break;
+    }
 }
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>@message</p>
+
+
 </div>
